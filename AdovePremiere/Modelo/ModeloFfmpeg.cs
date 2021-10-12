@@ -26,10 +26,11 @@ namespace AdovePremiere
                 using (Process exeProcess = Process.Start(startInfo))
                 {
                     exeProcess.WaitForExit();
+                    MessageBox.Show(exeProcess.StandardOutput.ReadToEnd(), "Problema");
                 }
                 MessageBox.Show(mensaje, "Listo");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error...");
             }
@@ -37,9 +38,16 @@ namespace AdovePremiere
 
         public void convertirFormato(String ruta, String nombre, String formato)
         {
-            String comando = $"/c ffmpeg -i {ruta}\\{nombre}.{formato}";
-            String mensaje = "Video convertido con exito.";
-            ejecutarFfmpeg(comando, mensaje);
+            if (!string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(nombre))
+            {
+                String comando = $"/c ffmpeg -i {ruta} {nombre}.{formato}";
+                String mensaje = "Video convertido con exito.";
+                ejecutarFfmpeg(comando, mensaje);
+            }
+            else
+            {
+                MessageBox.Show("Debes elegir un archivo y ponerle nombre para editar.", "Warning");
+            }
         }
 
         public void verResolucion(String ruta)
@@ -50,30 +58,58 @@ namespace AdovePremiere
 
         public void cambiarResolucion(String ruta, String nombre, String resolucion, String formato)
         {
-            String comando = $"/c ffmpeg -i {ruta} -vf scale={resolucion} {nombre}.{formato}";
-            String mensaje = "Se cambio la resolucion del video con exito.";
-            ejecutarFfmpeg(comando, mensaje);
+            if (!string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(nombre))
+            {
+                String comando = $"/c ffmpeg -i {ruta} -vf scale={resolucion} {nombre}.{formato}";
+                String mensaje = "Se cambio la resolucion del video con exito.";
+                ejecutarFfmpeg(comando, mensaje);
+            }
+            else
+            {
+                MessageBox.Show("Debes elegir un archivo y ponerle nombre para editar.", "Warning");
+            }
         }
 
         public void extraerAudio(String ruta, String nombre, String formato)
         {
-            String comando = $"/c ffmpeg -i {ruta} -vn -ar 44100 -ac 2 -ab 192k -f mp3 {nombre}.{formato}";
-            String mensaje = "Se extrajo el sonido con exito.";
-            ejecutarFfmpeg(comando, mensaje);
+            if (!string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(nombre))
+            {
+                String comando = $"/c ffmpeg -i {ruta} -vn -ar 44100 -ac 2 -ab 192k -f mp3 {nombre}.{formato}";
+                String mensaje = "Se extrajo el sonido con exito.";
+                ejecutarFfmpeg(comando, mensaje);
+            }
+            else
+            {
+                MessageBox.Show("Debes elegir un archivo y ponerle nombre para editar.", "Warning");
+            }
         }
 
         public void removerAudio(String ruta, String nombre, String formato)
         {
-            String comando = $"/c ffmpeg -i {ruta} -c copy -an {nombre}.{formato}";
-            String mensaje = "Se removio el sonido con exito";
-            ejecutarFfmpeg(comando, mensaje);
+            if (!string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(nombre))
+            {
+                String comando = $"/c ffmpeg -i {ruta} -c copy -an {nombre}.{formato}";
+                String mensaje = "Se removio el sonido con exito";
+                ejecutarFfmpeg(comando, mensaje);
+            }
+            else
+            {
+                MessageBox.Show("Debes elegir un archivo y ponerle nombre para editar.", "Warning");
+            }
         }
 
         public void extraerImagenes(String ruta, String nombre, String inicio, String fin)
         {
-            String comando = $"/c ffmpeg.exe -ss {inicio} - t {fin} - i {ruta} - qscale: v 2 - r 10.0 {nombre} -% 4d.jpg";
-            String mensaje = "Se extrajeron las imagenes correctamente.";
-            ejecutarFfmpeg(comando, mensaje);
+            if (!string.IsNullOrEmpty(ruta) && !string.IsNullOrEmpty(nombre))
+            {
+                String comando = $"/c ffmpeg.exe -ss {inicio} - t {fin} - i {ruta} - qscale: v 2 - r 10.0 {nombre} -% 4d.jpg";
+                String mensaje = "Se extrajeron las imagenes correctamente.";
+                ejecutarFfmpeg(comando, mensaje);
+            }
+            else
+            {
+                MessageBox.Show("Debes elegir un archivo y ponerle nombre para editar.", "Warning");
+            }
         }
 
     }

@@ -59,7 +59,7 @@ namespace AdovePremiere
         {
             String formato = textBoxRuta.Text;
             int cant = formato.Length;
-            return formato.Substring((cant - 3), 3);
+            return cant > 0 ? formato.Substring((cant - 3), 3) : "";
         }
 
 

@@ -516,10 +516,9 @@ namespace AdovePremiere
             this.textBoxPass.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPass.Location = new System.Drawing.Point(254, 346);
             this.textBoxPass.MaxLength = 15;
-            this.textBoxPass.Multiline = true;
             this.textBoxPass.Name = "textBoxPass";
             this.textBoxPass.PasswordChar = '*';
-            this.textBoxPass.Size = new System.Drawing.Size(139, 28);
+            this.textBoxPass.Size = new System.Drawing.Size(139, 25);
             this.textBoxPass.TabIndex = 5;
             this.textBoxPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -538,9 +537,8 @@ namespace AdovePremiere
             this.textBoxUsuario.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUsuario.Location = new System.Drawing.Point(254, 256);
             this.textBoxUsuario.MaxLength = 15;
-            this.textBoxUsuario.Multiline = true;
             this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new System.Drawing.Size(139, 27);
+            this.textBoxUsuario.Size = new System.Drawing.Size(139, 25);
             this.textBoxUsuario.TabIndex = 3;
             this.textBoxUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
