@@ -62,6 +62,16 @@ namespace AdovePremiere
             return cant > 0 ? formato.Substring((cant - 3), 3) : "";
         }
 
+        private String getUser()
+        {
+            return textBoxUsuario.Text;
+        }
+
+        private String getPass()
+        {
+            return textBoxPass.Text;
+        }
+
 
         // -------------------------------------------------
 
@@ -195,7 +205,8 @@ namespace AdovePremiere
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (this.bbdd.buscarUsuario(textBoxUsuario.Text, textBoxPass.Text) != null)
+            //if (this.bbdd.buscarUsuario(textBoxUsuario.Text, textBoxPass.Text) != null)
+                if (bbdd.api(getUser(),getPass()))
             {
                 MessageBox.Show("Iniciaste sesion correctamente!", "Login");
                 panelLogin.Visible = false;

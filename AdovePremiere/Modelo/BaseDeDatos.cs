@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,35 +10,37 @@ namespace AdovePremiere
 {
     public class BaseDeDatos
     {
-        private Dictionary<String, Usuario> bbdd;
+        public List<Usuario> usuariosRegistrados = new List<Usuario>();
 
-        public BaseDeDatos()
-        {
-            this.bbdd = new Dictionary<string, Usuario>();
-            cargarRegistros();
-        }
-
+      
         public void guardarRegistro(String user, String pass)
         {
-            this.bbdd.Add(user, new Usuario(user, pass));
+            usuariosRegistrados.Add(new Usuario(user, pass));
         }
 
         public Usuario buscarUsuario(String user, String pass)
         {
             Usuario usuEncontrado = null;
-            foreach (var usuario in this.bbdd)
+            foreach (var usuario in this.usuariosRegistrados)
             {
-                if (usuario.Value.getUsuario().Equals(user) && usuario.Value.getPass().Equals(pass))
+                if (usuario.getUsuario().Equals(user) && usuario.getPass().Equals(pass))
                 {
-                    usuEncontrado = usuario.Value;
+                    usuEncontrado = usuario;
                 }
             }
             return usuEncontrado;
         }
 
-        public void cargarRegistros()
+        public bool api(String username, String password)
         {
-            guardarRegistro("german", "12345");
+            var client = new RestClient("https://localhost:44340");
+            var request = new RestRequest("/api/check", Method.POST);
+            request.AddJsonBody(new { username = username, password = password });
+
+            var response = client.Execute(request);
+            var obj = JObject.Parse(response.Content);
+
+            return (bool)obj["valid"];
         }
     }
 }

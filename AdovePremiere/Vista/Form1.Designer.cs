@@ -590,7 +590,7 @@ namespace AdovePremiere
             this.Controls.Add(this.panelFormato);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Editor Ffmpeg";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelImagenes.ResumeLayout(false);
             this.panelImagenes.PerformLayout();
